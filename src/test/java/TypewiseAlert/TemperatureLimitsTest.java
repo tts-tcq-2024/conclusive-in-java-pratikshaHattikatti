@@ -3,7 +3,7 @@ package TypewiseAlert;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class TemperatureLimitsTest {
+public class TemperatureLimitsTest{
 
     @Test
     public void testGetLimits() {
