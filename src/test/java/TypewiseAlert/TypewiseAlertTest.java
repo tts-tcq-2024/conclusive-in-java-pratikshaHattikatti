@@ -1,12 +1,17 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class BreachClassifierTest {
+public class TemperatureLimitsTest {
 
     @Test
-    public void testClassifyTemperatureBreach() {
-        assertEquals(BreachType.TOO_LOW, BreachClassifier.classifyTemperatureBreach(CoolingType.PASSIVE_COOLING, -5));
-        assertEquals(BreachType.TOO_HIGH, BreachClassifier.classifyTemperatureBreach(CoolingType.HI_ACTIVE_COOLING, 50));
-        assertEquals(BreachType.NORMAL, BreachClassifier.classifyTemperatureBreach(CoolingType.MED_ACTIVE_COOLING, 30));
+    public void testGetLimits() {
+        assertArrayEquals(new double[]{0, 35}, TemperatureLimits.getLimits(CoolingType.PASSIVE_COOLING), 0.01);
+        assertArrayEquals(new double[]{0, 45}, TemperatureLimits.getLimits(CoolingType.HI_ACTIVE_COOLING), 0.01);
+        assertArrayEquals(new double[]{0, 40}, TemperatureLimits.getLimits(CoolingType.MED_ACTIVE_COOLING), 0.01);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetLimitsUnknownCoolingType() {
+        TemperatureLimits.getLimits(null); // Assuming null represents unknown CoolingType for the test
     }
 }
