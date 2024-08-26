@@ -11,6 +11,7 @@ public class AlertSender {
         }
     }
 
+    
     public static void sendToController(BreachType breachType) {
         int header = 0xfeed;
         System.out.printf("%i : %s\n", header, breachType);
