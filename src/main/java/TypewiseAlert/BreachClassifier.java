@@ -1,12 +1,8 @@
 package TypewiseAlert;
 
-public class BreachClassifier{
-    public static BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC) {
-        double[] limits = TemperatureLimits.getLimits(coolingType);
-        return inferBreach(temperatureInC, limits[0], limits[1]);
-    }
+public class BreachClassifier {
 
-    private static BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
+    public static BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
         if (value < lowerLimit) {
             return BreachType.TOO_LOW;
         }
@@ -15,5 +11,9 @@ public class BreachClassifier{
         }
         return BreachType.NORMAL;
     }
-}
 
+    public static BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC) {
+        double[] limits = TemperatureLimits.getLimits(coolingType);
+        return inferBreach(temperatureInC, limits[0], limits[1]);
+    }
+}
