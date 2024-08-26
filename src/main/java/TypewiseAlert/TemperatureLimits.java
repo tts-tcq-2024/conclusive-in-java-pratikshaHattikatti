@@ -1,23 +1,16 @@
 package TypewiseAlert;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class TemperatureLimits {
-
-    private static final Map<CoolingType, double[]> limitsMap = new HashMap<>();
-
-    static {
-        limitsMap.put(CoolingType.PASSIVE_COOLING, new double[]{0, 35});
-        limitsMap.put(CoolingType.HI_ACTIVE_COOLING, new double[]{0, 45});
-        limitsMap.put(CoolingType.MED_ACTIVE_COOLING, new double[]{0, 40});
-    }
-
-    public static double[] getLimits(CoolingType coolingType) {
-        if (limitsMap.containsKey(coolingType)) {
-            return limitsMap.get(coolingType);
-        } else {
-            throw new IllegalArgumentException("Unknown CoolingType");
+    public static int[] getLimits(CoolingType coolingType) {
+        switch (coolingType) {
+            case PASSIVE_COOLING:
+                return new int[]{0, 35};
+            case HI_ACTIVE_COOLING:
+                return new int[]{0, 45};
+            case MED_ACTIVE_COOLING:
+                return new int[]{0, 40};
+            default:
+                throw new IllegalArgumentException("Unknown cooling type");
         }
     }
 }
