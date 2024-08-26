@@ -11,17 +11,17 @@ public class AlertSender {
         }
     }
 
-    private static void sendToController(BreachType breachType) {
+    public static void sendToController(BreachType breachType) {
         int header = 0xfeed;
         System.out.printf("%i : %s\n", header, breachType);
     }
 
-    private static void sendToEmail(BreachType breachType) {
+    public static void sendToEmail(BreachType breachType) {
         String recipient = "a.b@c.com";
         System.out.printf("To: %s\n%s", recipient, getEmailMessage(breachType));
     }
 
-    private static String getEmailMessage(BreachType breachType) {
+    public static String getEmailMessage(BreachType breachType) {
         switch (breachType) {
             case TOO_LOW:
                 return "Hi, the temperature is too low\n";
