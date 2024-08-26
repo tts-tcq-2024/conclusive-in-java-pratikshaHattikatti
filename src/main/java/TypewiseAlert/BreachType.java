@@ -1,6 +1,6 @@
 package TypewiseAlert;
 
-public enum BreachType {
+public enum BreachType{
     NORMAL,
     TOO_LOW,
     TOO_HIGH
