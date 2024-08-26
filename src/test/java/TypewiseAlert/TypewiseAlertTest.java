@@ -22,7 +22,17 @@ public class TypewiseAlertTest {
         TypewiseAlert.BatteryCharacter batteryChar = new TypewiseAlert().new BatteryCharacter();
         batteryChar.coolingType = TypewiseAlert.CoolingType.PASSIVE_COOLING;
 
-        // Verify console output or use mocking framework to verify methods are called
+        // Redirect stdout to capture output for testing
+        java.io.ByteArrayOutputStream outContent = new java.io.ByteArrayOutputStream();
+        System.setOut(new java.io.PrintStream(outContent));
+
+        TypewiseAlert.checkAndAlert(TypewiseAlert.AlertTarget.TO_CONTROLLER, batteryChar, -5);
+        assertTrue(outContent.toString().contains("feed : TOO_LOW"));
+
+        outContent.reset();
+        TypewiseAlert.checkAndAlert(TypewiseAlert.AlertTarget.TO_EMAIL, batteryChar, 50);
+        assertTrue(outContent.toString().contains("Hi, the temperature is too high"));
+
+        System.setOut(System.out); // Reset System.out
     }
 }
-
