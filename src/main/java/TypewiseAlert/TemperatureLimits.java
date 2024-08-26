@@ -5,16 +5,16 @@ import java.util.Map;
 
 public class TemperatureLimits {
 
-    private static final Map<CoolingType, int[]> LIMITS = new HashMap<>();
+    private static final Map<CoolingType, double[]> LIMITS = new HashMap<>();
 
     static {
-        LIMITS.put(CoolingType.PASSIVE_COOLING, new int[]{0, 35});
-        LIMITS.put(CoolingType.HI_ACTIVE_COOLING, new int[]{0, 45});
-        LIMITS.put(CoolingType.MED_ACTIVE_COOLING, new int[]{0, 40});
+        LIMITS.put(CoolingType.PASSIVE_COOLING, new double[]{0.0, 35.0});
+        LIMITS.put(CoolingType.HI_ACTIVE_COOLING, new double[]{0.0, 45.0});
+        LIMITS.put(CoolingType.MED_ACTIVE_COOLING, new double[]{0.0, 40.0});
     }
 
-    public static int[] getLimits(CoolingType coolingType) {
-        int[] limits = LIMITS.get(coolingType);
+    public static double[] getLimits(CoolingType coolingType) {
+        double[] limits = LIMITS.get(coolingType);
         if (limits == null) {
             throw new IllegalArgumentException("Unknown cooling type");
         }
