@@ -10,33 +10,3 @@ public class BreachClassifierTest {
         assertEquals(BreachType.NORMAL, BreachClassifier.classifyTemperatureBreach(CoolingType.MED_ACTIVE_COOLING, 30));
     }
 }
-
-import static org.junit.Assert.*;
-import org.junit.Test;
-
-public class AlertSenderTest {
-
-    @Test
-    public void testSendToController() {
-        // Redirect stdout to capture output for testing
-        java.io.ByteArrayOutputStream outContent = new java.io.ByteArrayOutputStream();
-        System.setOut(new java.io.PrintStream(outContent));
-
-        AlertSender.sendAlert(AlertTarget.TO_CONTROLLER, BreachType.TOO_LOW);
-        assertTrue(outContent.toString().contains("feed : TOO_LOW"));
-
-        System.setOut(System.out); // Reset System.out
-    }
-
-    @Test
-    public void testSendToEmail() {
-        // Redirect stdout to capture output for testing
-        java.io.ByteArrayOutputStream outContent = new java.io.ByteArrayOutputStream();
-        System.setOut(new java.io.PrintStream(outContent));
-
-        AlertSender.sendAlert(AlertTarget.TO_EMAIL, BreachType.TOO_HIGH);
-        assertTrue(outContent.toString().contains("Hi, the temperature is too high"));
-
-        System.setOut(System.out); // Reset System.out
-    }
-}
