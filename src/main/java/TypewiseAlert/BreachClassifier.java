@@ -1,6 +1,6 @@
 package TypewiseAlert;
 
-public class BreachClassifier {
+public class BreachClassifier{
     public static BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC) {
         double[] limits = TemperatureLimits.getLimits(coolingType);
         return inferBreach(temperatureInC, limits[0], limits[1]);
